@@ -19,13 +19,13 @@ function setup() {
 
 function draw(){
   background(255);
-  move_entity();
   if (mode === "circle"){
     show_circle();
   }
   else if (mode === "rectangle"){
    show_rect();
   }
+  move_entity();
 }
 function windowResized() {
   setup();
