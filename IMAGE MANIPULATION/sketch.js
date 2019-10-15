@@ -23,6 +23,7 @@ function draw() {
     if (shapes[i].y  > height - shapes[i].radius) {
       shapes[i].dy *= -1
     }
+    if (shapes[i].y > height && shapes[i]
   
   }
   
