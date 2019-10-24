@@ -5,7 +5,7 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let grid = [];
+let grid;
 
 function setup() {
   createCanvas(windowWidth, windowHeight)
