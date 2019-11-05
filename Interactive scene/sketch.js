@@ -14,19 +14,13 @@ function setup() {
 }
 
 function draw() {
-  fill(redAmount,0,255);
-  ellipse(mouseX,mouseY,100,100);
-
-  redAmount += redChangeAmount;
-  
-  if (redAmount >= 255) {
-    redChangeAmount *= -1;
-  }
-  if (redAmount <= 0){
-    redChangeAmount *= -1;
-
-  }
-  console.log(redAmount);
+  stroke(0);
+  line(pmouseX,pmouseY,mouseX,mouseY);
   
   }
 
+
+
+mousePressed(){
+  background(220)
+}

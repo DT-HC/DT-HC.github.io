@@ -17,17 +17,22 @@ function draw() {
   background(0)
   for (let i = 0; i < shapes.length; i++) {
     fill(255);
-    ellipse(shapes[i].x, shapes[i].y, shapes[i].radius*2, shapes[i].radius*2)
-    shapes[i].dy -= gravity
-    shapes[i].y += shapes[i].dy
-    if (shapes[i].y  > height - shapes[i].radius) {
-      shapes[i].dy *= -1
+    if (mouseIsPressed) {
+      ellipse(mouseX, mouseY, shapes[i].radius*2, shapes[i].radius*2)
+      shapes[i].dy -= gravity
+      shapes[i].y += shapes[i].dy
     }
-    if (shapes[i].y > height && shapes[i]
+    else {
+      shapes.push(someShape);
+      ellipse(shapes[i].x, shapes[i].y, shapes[i].radius*2, shapes[i].radius*2)
+      shapes[i].dy -= gravity
+      shapes[i].y += shapes[i].dy
+    }
+    if (shapes[i].y  > height - shapes[i].radius) {
+      shapes[i].dy *= -1;
+    }
   
   }
-  
-  
   
 
 
@@ -38,11 +43,12 @@ function mousePressed() {
     x: mouseX,
     y: mouseY,
     radius: random(10,50),
-    dy: random(1,10),
+    dy: 0
   
   };
-  shapes.push(someShape);
+  //shapes.push(someShape);
 }
+
 
   
   
