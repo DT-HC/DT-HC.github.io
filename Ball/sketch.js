@@ -11,6 +11,7 @@ let cannonWidth;
 let cannonHeight;
 let bulletAngle;
 let bullets = [];
+let state = "menu"
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -26,7 +27,7 @@ function setup() {
 function draw() {
  background(220);
  
- //updateBullets();
+ updateBullets();
   
   }
 
@@ -45,7 +46,7 @@ function displayBall() {
     y: mouseY,
     radius: cannonWidth,
     angle: bulletAngle,
-    speed: 1
+    speed: distance(pmouseX,pmouseY,mouseX,mouseY)
   };
   bullets.push(thisBullet);
 
