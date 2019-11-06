@@ -39,13 +39,13 @@ function create2dArray(cols, rows) {
   let someArray = [];
   for (let i=0; i<cols; i++) {
     someArray.push([]);
-    ///for (let j=0; j<rows; j++) {
-      ///if (random(100) < 50) {
-       /// someArray[i].push(1);
-      //}
-      //else {
-       // someArray[i].push(0);
-      //}
+    for (let j=0; j<rows; j++) {
+      if (random(100) < 50) {
+        someArray[i].push(1);
+      }
+      else {
+        someArray[i].push(0);
+      }
     }
   }
   return someArray;
