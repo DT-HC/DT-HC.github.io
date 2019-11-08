@@ -11,7 +11,7 @@ let cannonWidth;
 let cannonHeight;
 let bulletAngle;
 let bullets = [];
-let state = "menu"
+let state = "Gravity"
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -60,4 +60,3 @@ function updateBullets() {
     ellipse(thisBullet.x, thisBullet.y, thisBullet.radius)
   }
 }
-

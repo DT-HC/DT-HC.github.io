@@ -5,63 +5,35 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let cannonX;
-let cannonY;
-let cannonWidth;
-let cannonHeight;
-let cannonAngle;
+let state = "gravity"
 let bullets = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  cannonX = 75;
-  cannonY = height - 150;
-  cannonWidth = 50;
-  cannonHeight = 125;
-  cannonAngle = 0;
 
   
 }
+
 
 function draw() {
  background(220);
- displayCannon();
- updateBullets();
   
   }
 
-function displayCannon() {
-  push();
-  translate(cannonX,cannonY);
-  cannonAngle = atan2(mouseY - cannonY, mouseX - cannonX)
-  rotate(cannonAngle);
-  rect(0, -cannonWidth/2, cannonHeight, cannonWidth);
-  circle(0, 0, cannonWidth);
-  pop();
-}
+class Ball {
+  constructor() {
+    this.x = random(width);
+    this.y = random(height);
+    this.diameter = random(10, 30);
+    this.speed = 1;
+  }
 
-function mouseClicked(){
-  fire();
-}
+  move() {
+    this.x += random(-this.speed, this.speed);
+    this.y += random(-this.speed, this.speed);
+  }
 
-function fire() {
-  let thisBullet = {
-    x: cannonX,
-    y: cannonY,
-    radius: cannonWidth,
-    angle: cannonAngle,
-    speed: 25
-  };
-  bullets.push(thisBullet);
-
-}
-
-function updateBullets() {
-  for (let thisBullet of bullets) {
-    thisBullet.x += thisBullet.speed * cos(thisBullet.angle);
-    thisBullet.y += thisBullet.speed * sin(thisBullet.angle)
-
-    ellipse(thisBullet.x, thisBullet.y, thisBullet.radius)
+  display() {
+    ellipse(this.x, this.y, this.diameter, this.diameter);
   }
 }
-
