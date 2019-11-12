@@ -69,7 +69,7 @@ let pacman;
   }
  
  
-  class Pacman(x, y) {
+  function Pacman(x, y) {
     this.x = x + 20;
     this.y = y + 20;
     this.toDelete = false;
@@ -185,7 +185,7 @@ let pacman;
       a.walls[1] = false;
       b.walls[3] = false;
     }
-    var y = a.j - b.j;
+    let y = a.j - b.j;
     if (y === 1) {
       a.walls[0] = false;
       b.walls[2] = false;

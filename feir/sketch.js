@@ -30,8 +30,9 @@ function draw() {
 
 function mousePressed() {
   for (let i = 0; i < 100; i++) {
-    let myBullet = new Bullet(mouseX, mouseY, random(-3,3), random(-3, 3), 5);
+    let myBullet = new Bullet(mouseX, mouseY, , random(-3, 3), 5);
     theBullets.push(myBullet);
+
   }
 }
 
