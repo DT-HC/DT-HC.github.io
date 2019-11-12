@@ -4,50 +4,61 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
-let George;
-let Jenna;
+let theBullets = [];
+let gravity = 0.03;
+
 function setup() {
-  createCanvas(windowWidth, windowHeight)
-  background(220)
-  George = new Walker(width/2, 200);
-  Jenna = new Walker(width/2, 300);
+  createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  George.move();
-  Jenna.move();
-  George.display();
-  Jenna.display();
+  background(0);
+  for (let i = theBullets.length - 1; i > 0; i--) {
+    theBullets[i].move();
+    theBullets[i].display();
+  }
+
+  // If you want to spam the screen when holding down the mouse, use this...
+
+  //  if (mouseIsPressed) {
+  //    for (let i = 0; i < 100; i++)
+  //     let myBullet = new Bullet(mouseX, mouseY, random(-3,3), random(-3, 3), 10);
+  //     theBullets.push(myBullet);
+  //  }
+
+}
+
+function mousePressed() {
+  for (let i = 0; i < 100; i++) {
+    let myBullet = new Bullet(mouseX, mouseY, random(-3,3), random(-3, 3), 5);
+    theBullets.push(myBullet);
+  }
+}
+
+class Bullet {
+  constructor(x, y, dx, dy, radius) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.radius = radius;
+    this.alpha = 255;
 
   }
 
-class Walker {
-  constructor(x, y) {
-    this.x = x
-    this.y = y
-    this.fillColor = color(random(255), random(255), random(255));
-    this.stepSize = 6;
-    this.radius = 3;
-
-  }
   display() {
-    fill(this.fillColor);
-    noStroke();
-    circle(this.x, this.y, this.radius*2)
+    fill(255, 0, 0, this.alpha);
+    circle(this.x, this.y, this.radius * 2);
   }
+
   move() {
-    let choice = random(100);
-    if (choice < 25) {
-      this.y -= this.stepSize
-    }
-    else if (choice < 50) {
-      this.y += this.stepSize
-    }
-    else if (choice < 75) {
-      this.x -= this.stepSize
-    }
-    else if (choice < 100) {
-      this.x += this.stepSize
-    }
+    this.x += this.dx;
+    this.y += this.dy;
+    this.dy += gravity
+    this.alpha -= 1
+  }
+
+  isDone() {
+    return this.alpha <= 0;
   }
 }

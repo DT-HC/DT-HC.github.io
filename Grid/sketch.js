@@ -40,7 +40,7 @@ function createEmptyGrid() {
 =======
   displayGrid(grid);
 }
->>>>>>> c61708bf50633efa5c95da19400c0a1899f1247a
+
 
 function displayGrid(theGrid) {
   //assumes the grid is a square...
