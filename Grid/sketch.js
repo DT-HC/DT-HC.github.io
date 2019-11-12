@@ -9,18 +9,17 @@ cols= 30
 rows = 30
 
 
+let grid = [];
+
+
 function setup() {
-  if (windowWidth > windowHeight) {
-    createCanvas(windowHeight, windowHeight);
-  }
-  else {
-    createCanvas(windowWidth, windowWidth);
-  }
-  grid = createRandom2dArray(cols, rows);
+  createCanvas(windowWidth, windowHeight);
+  grid = create2dArray(20, 20);
 }
 
 function draw() {
   background(220);
+<<<<<<< HEAD
   displayGrid();
 
 }
@@ -38,27 +37,38 @@ function createEmptyGrid() {
 
 
 
+=======
+  displayGrid(grid);
+}
+>>>>>>> c61708bf50633efa5c95da19400c0a1899f1247a
 
-function displayGrid(grid, rows, cols) {
-  let cellSize = width / cols;
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      if (grid[y][x] === 0) {
+function displayGrid(theGrid) {
+  //assumes the grid is a square...
+  for (let y = 0; y < theGrid[0].length; y++) {
+    for (let x = 0; x < theGrid[0].length; x++) {
+      if (theGrid[y][x] === 0) {
         fill(255);
       }
       else {
         fill(0);
       }
-      rect(x*cellSize, y*cellSize, cellSize, cellSize);
+    
+      let cellSize = width / theGrid[0].length;
+      rect(x * cellSize, y * cellSize, cellSize, cellSize);
     }
   }
 }
 
+<<<<<<< HEAD
 function createRandom2dArray(cols, rows) {
+=======
+function create2dArray(cols, rows) {
+>>>>>>> c61708bf50633efa5c95da19400c0a1899f1247a
   let someArray = [];
   for (let i=0; i<cols; i++) {
     someArray.push([]);
     for (let j=0; j<rows; j++) {
+<<<<<<< HEAD
       if (random(100) < 50) {
         someArray[i].push(1);
       }
@@ -69,3 +79,10 @@ function createRandom2dArray(cols, rows) {
   }
   return someArray;
 }
+=======
+      someArray[i].push(0);
+     }
+    }
+  }
+  return someArray;
+>>>>>>> c61708bf50633efa5c95da19400c0a1899f1247a

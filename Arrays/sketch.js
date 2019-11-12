@@ -10,24 +10,20 @@ let grid = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  grid = create2dArray(20, 20);
+  grid = create2dArray(50, 50);
 }
 
 function draw() {
   background(220);
   displayGrid(grid);
+  displayPlayer();
 }
 
 function displayGrid(theGrid) {
   //assumes the grid is a square...
   for (let y = 0; y < theGrid[0].length; y++) {
     for (let x = 0; x < theGrid[0].length; x++) {
-      if (theGrid[y][x] === 0) {
-        fill(255);
-      }
-      else {
-        fill(0);
-      }
+     fill(220)
     
       let cellSize = width / theGrid[0].length;
       rect(x * cellSize, y * cellSize, cellSize, cellSize);
@@ -49,4 +45,10 @@ function create2dArray(cols, rows) {
     }
   }
   return someArray;
+}
+function displayPlayer() {
+  playerYPos = 50//Grid[height/2];
+  playerXPos = 50//Grid[width/2]
+  fill(0)
+  ellipse(playerXPos, playerYPos, cellSize, cellSize)
 }
