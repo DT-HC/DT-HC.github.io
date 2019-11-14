@@ -4,7 +4,6 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
-
 let pacman;
   let w = 40;
   let cols, rows;
@@ -13,17 +12,21 @@ let pacman;
   let current;
   //the current cell being visited
   let stack = [];
+  let xlocation = 0;
+  let ylocation = 0;
+  
  
  
  
   function setup() {
-    createCanvas(400, 400);
+    createCanvas(windowWidth, windowHeight);
     cols = floor(width / w);
     rows = floor(height / w);
     pacman = new Pacman(0, 0);
-    for (var j = 0; j < rows; j++) {
-      for (var i = 0; i < cols; i++) {
-        var cell = new Cell(i, j);
+    for (let j = 0; j < rows; j++) {
+      for (let i = 0; i < cols; i++) {
+        let cell = new Cell(i, j);
+        //cellLoc = new Cell(xlocation + dir, ylocation + dir);
         grid.push(cell);
       }
     }
@@ -35,11 +38,11 @@ let pacman;
     background(0);
     pacman.show();
     pacman.borders();
-    for (var i = 0; i < grid.length; i++) {
+    for (let i = 0; i < grid.length; i++) {
       grid[i].show();
     }
     current.visited = true;
-    var next = current.checkNeighbours();
+    let next = current.checkNeighbours();
     if (next) {
       next.visited = true;
  
@@ -55,21 +58,23 @@ let pacman;
  
       function keyPressed() {
     if (keyCode === RIGHT_ARROW) {
-      pacman.moveh(1);
-    }
+     //while (!cellLoc.walls[1]){
+      pacman.moveX(1);
+    //}
+  }
     if (keyCode === LEFT_ARROW) {
-      pacman.moveh(-1);
+      pacman.moveX(-1);
     }
     if (keyCode === UP_ARROW) {
-      pacman.movev(-1);
+      pacman.moveY(-1);
     }
     if (keyCode === DOWN_ARROW) {
-      pacman.movev(1);
+      pacman.moveY(1);
     }
   }
  
  
-  class Pacman(x, y) {
+  function Pacman(x, y) {
     this.x = x + 20;
     this.y = y + 20;
     this.toDelete = false;
@@ -84,11 +89,13 @@ let pacman;
       ellipse(this.x, this.y, this.r, this.r);
     }
  
-    this.moveh = function(dir) {
+    this.moveX = function(dir) {
       this.x += dir * w;
+      xlocation += dir 
     }
-    this.movev = function(dir) {
+    this.moveY = function(dir) {
       this.y += dir * w;
+      ylocation += dir
     }
     this.borders = function() {
       if (this.x > width - 1) {
@@ -146,7 +153,7 @@ let pacman;
         neighbours.push(left);
       }
       if (neighbours.length > 0) {
-        var r = floor(random(0, neighbours.length));
+        let r = floor(random(0, neighbours.length));
         return neighbours[r];
       } else {
         return undefined;
@@ -157,8 +164,8 @@ let pacman;
  
  
     this.show = function() {
-      var x = this.i * w;
-      var y = this.j * w;
+      let x = this.i * w;
+      let y = this.j * w;
       stroke(255);
       if (this.walls[0]) {
         line(x, y, x + w, y);
@@ -185,7 +192,7 @@ let pacman;
       a.walls[1] = false;
       b.walls[3] = false;
     }
-    var y = a.j - b.j;
+    let y = a.j - b.j;
     if (y === 1) {
       a.walls[0] = false;
       b.walls[2] = false;
