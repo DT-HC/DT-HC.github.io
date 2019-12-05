@@ -11,25 +11,45 @@ let triangleVertices = [
   {x: 700, y: 600}
 ];
 let depth = 0;
+let colorList = ["blue", "red", "yellow"]
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  background(255);
 }
 
 function draw(){
-  background(255);
   sierpinksi(triangleVertices, depth);
+}
+function mousePressed() {
+  depth++;
 }
 
 function sierpinksi(points, level) {
+  noStroke();
+  if (level > colorList.length - 1) {
+    colorList.push(color(random(255), random(255), random(255)));
+  }
+  fill(colorList[level]);
   triangle(points[0].x, points[0].y, 
            points[1].x, points[1].y, 
            points[2].x, points[2].y);
-  if (level > 0 ) {
-    sierpinkski([points[0],
-      getMidpoint(points[0], points[1])
-      getMidpoint(points[0], points[2])], level -1);
-  } 
+  if (level > 0) {
+    sierpinski([points[0],
+                getMidpoint(points[0], points[1]),
+                getMidpoint(points[0], points[2])],
+                level - 1);
+    
+    sierpinski([points[1],
+                getMidpoint(points[0], points[1]),
+                getMidpoint(points[1], points[2])],
+                level - 1);
+
+    sierpinski([points[2],
+                getMidpoint(points[2], points[1]),
+                getMidpoint(points[0], points[2])],
+                level - 1);
+  }
 }
   
 function getMidpoint(point1, point2){
