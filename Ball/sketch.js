@@ -11,7 +11,7 @@ let cannonWidth;
 let cannonHeight;
 let bulletAngle;
 let bullets = [];
-let state = "Gravity"
+let state = "Gravity";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);

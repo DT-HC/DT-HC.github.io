@@ -14,10 +14,17 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  MASA.loadPixels();
+  for (let i = 0; i < MASA.width * MASA.height; i++){
+    if (MASA.pixels[i] === color(255,255,255)){
+      MASA.pixels[i] = 0;
+    }
+    MASA.updatePixels();
+  }
 }
 
 function draw(){
-  background(255);
+  background(0);
 
   if (keyIsPressed) {
     if (keyCode === UP_ARROW) {
@@ -30,6 +37,13 @@ function draw(){
   imageMode(CENTER);
   image(MASA, mouseX, mouseY, MASA.width * sizeadd, MASA.height * sizeadd);
   
+}
+function obtainPixel(a){
+
+}
+
+function fjbndfjb(){
+
 }
 
 
